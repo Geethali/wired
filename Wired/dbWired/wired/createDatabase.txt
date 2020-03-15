@@ -1,0 +1,37 @@
+CREATE DATABASE dbWired;
+
+use dbWired;
+
+CREATE TABLE PRODUCT
+(
+   productNumber int NOT NULL AUTO_INCREMENT
+   ,productName varchar(30) NOT NULL
+   ,productBrand varchar(30) NOT NULL
+   ,productDescription longtext
+   ,productType ENUM ('wired', 'wireless', 'accessories')
+   ,productImage varchar(30) NOT NULL
+   ,price double NOT NULL
+   ,quantityInStock int NOT NULL
+   ,PRIMARY KEY (productNumber)
+);
+
+CREATE TABLE WIRED
+(
+   productNumber int NOT NULL
+  ,wiredType ENUM ('type1', 'type2', 'type3', 'type4')
+  ,FOREIGN KEY (productNumber) REFERENCES PRODUCT (productNumber) ON DELETE CASCADE
+);
+
+CREATE TABLE WIRELESS
+(
+   productNumber int NOT NULL
+  ,wirelessType ENUM ('type1', 'type2')
+  ,FOREIGN KEY (productNumber) REFERENCES PRODUCT (productNumber) ON DELETE CASCADE
+);
+
+CREATE TABLE ACCESSORIES
+(
+   productNumber int NOT NULL
+  ,wiredType ENUM ('type1', 'type2', 'type3', 'type4', 'type5', 'type6')
+  ,FOREIGN KEY (productNumber) REFERENCES PRODUCT (productNumber) ON DELETE CASCADE
+);
